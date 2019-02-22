@@ -1,24 +1,28 @@
 <template>
 <div id="app-container">
 <mt-header fixed title="本地项目"></mt-header>
-<mt-tabbar v-model="selected">
-  <mt-tab-item id="tab1">
-    <img slot="icon" src="">
-    tab1
-  </mt-tab-item>
-  <mt-tab-item id="tab2">
-    <img slot="icon" src="">
-    tab2
-  </mt-tab-item>
-  <mt-tab-item id="tab3">
-    <img slot="icon" src="">
-    tab3
-  </mt-tab-item>
-  <mt-tab-item id="tab4">
-    <img slot="icon" src="">
-    tab4
-  </mt-tab-item>
-</mt-tabbar> 
+<transition>
+<router-view></router-view>
+</transition>
+
+<nav class="mui-bar mui-bar-tab">
+			<router-link class="mui-tab-item" to="/home">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</router-link>
+			<router-link class="mui-tab-item" to="/mumber">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">会员</span>
+			</router-link>
+			<router-link class="mui-tab-item" to="/shopcar">
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">0</span></span>
+				<span class="mui-tab-label">购物车</span>
+			</router-link>
+			<router-link class="mui-tab-item" to="/search">
+				<span class="mui-icon mui-icon-search"></span>
+				<span class="mui-tab-label">搜索</span>
+			</router-link>
+		</nav>
 </div>
 </template>
 <script>
@@ -26,3 +30,21 @@ export default {
   name: 'App'
 }
 </script>
+<style scoped>
+#app-container{
+  padding-top: 40px;
+  overflow: hidden;
+}
+.v-enter,.v-leave-to{
+  opacity: 0;
+  transform: translateX(100%)
+}
+.v-leave-to{
+  opacity: 0;
+  transform: translateX(-100%);
+  position: absolute;
+}
+.v-enter-active,.v-leave-active{
+  transition: all 0.5s ease;
+}
+</style>
