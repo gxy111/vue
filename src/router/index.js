@@ -4,6 +4,8 @@ import homeContainer from '@/components/tabbar/homeContainer'
 import shopcarContainer from '@/components/tabbar/shopcarContainer'
 import searchContainer from '@/components/tabbar/searchContainer'
 import mumberContainer from '@/components/tabbar/mumberContainer'
+import NewList from '@/components/news/NewLsit.vue'
+import Newinfo from '@/components/news/Newinfo.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -11,6 +13,16 @@ export default new Router({
     {
       path: '/',
       redirect: '/home'
+    },
+    {
+      path: '/home/newlist',
+      name: 'newList',
+      component: NewList
+    },
+    {
+      path: '/home/newinfo/:id',
+      name: 'newinfo',
+      component: Newinfo
     },
     {
       path: '/home',

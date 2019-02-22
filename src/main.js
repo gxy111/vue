@@ -9,10 +9,15 @@ import './assets/mui/fonts/mui-icons-extra.ttf'
 import router from './router'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
+import moment from 'moment'
 Vue.use(MintUI)
 Vue.use(VueResource)
-Vue.config.productionTip = false
+Vue.http.options.root = 'http://www.liulongbin.top:3005'
 
+Vue.config.productionTip = false
+Vue.filter('dataFormat', function (dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
+  moment(dataStr).format(pattern)
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
