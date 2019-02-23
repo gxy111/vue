@@ -91,9 +91,6 @@ export default {
     goComment(id) {
       this.$router.push({ name: "goodscomment", params: { id } });
     },
-    addToShopCar() {
-      this.ballFlag = !this.ballFlag;
-    },
     beforeEnter(el) {
       el.style.transform = "translate(0,0)";
     },
@@ -113,6 +110,16 @@ export default {
     getSelectCount(count){
         this.selectCount = count;
         console.log(count)
+    },
+    addToShopCar(){
+        this.ballFlag = !this.ballFlag;
+        var goodsinfo = {
+            id: this.id,
+            count: this.selectCount,
+            price: this.goodsinfo.sell_price,
+            selected: true
+        };
+        this.$store.commit("addToCar",goodsinfo)
     }
   }
 };

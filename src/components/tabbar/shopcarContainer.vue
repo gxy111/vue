@@ -1,21 +1,119 @@
 <template>
-<div>
-    <h1>shopcar</h1>
-</div>
+   <div class="shopcar-container">
+    <div class="goods-list">
+   
+      <div class="mui-card" v-for="(item,i) in goodslist" :key="item.id">
+        <div class="mui-card-content">
+          <div class="mui-card-content-inner">
+            <mt-switch @change="selectedChanged(item.id,$store.getters.getGoodsSelected[item.id])" v-model="$store.getters.getGoodsSelected[item.id]"></mt-switch>
+            <img src="item.thumb_path" alt>
+            <div class="info">
+              <h1>{{item.title}}</h1>
+              <p>
+                <span class="price">{{item.sell_price}}</span>
+                <numbox :initcount="$store.getters.getGoodsCount[item.id]" :goodsid="item.id" ></numbox>
+                <a href="#" @click.prevent="remove(item.id,i)">删除</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mui-card">
+      <div class="mui-card-content">
+        <div class="mui-card-content-inner jiesuan">
+          <div class="left">
+            <p>总计不含运费</p>
+            <p>一勾选商品<span class='red'></span>件，总价<span class='red'>￥</span></p>
+          </div>
+            <mt-button type="danger">去结算</mt-button>
+        </div>
+      
+      </div>
+    </div>
+  <p>{{$store.getters.getGoodsSelected}}</p>
+  </div> 
 </template>
 
 <script>
+import numbox from "../subcomponent/numbox";
+import { constants } from 'fs';
 export default {
-  name: 'shopcarContainer',
-  data () {
+  name: "shopcarContainer",
+  data() {
     return {
-      msg: ''
+      goodslist: []
+    };
+  },
+  components: {
+    numbox
+  },
+  created() {
+    this.getGoodsList();
+  },
+  methods: {
+    getGoodsList() {
+      var idArr = [];
+      this.$store.state.car.forEach(item => idArr.push(item.id));
+      if (idArr.length <= 0) {
+        return;
+      }
+      this.$http
+        .get("api/goods/getshopcarlist/" + idArr.join(","))
+        .then(result => {
+          if (result.body.status === 0) {
+            this.goodslist = result.body.message;
+          }
+        });
+    },
+    remove(id,index){
+      this.goodslist.splice(index,1);
+      console.log('111')
+      this.$store.commit('removeFormCar',id)
+    },
+    selectedChanged(id,val){
+      console.log(id + "---" +val)
+      console.log(this.$store.getters.getGoodsCountAndAmount.count)
+      this.$$store.commit("updateGoodsSelected",{id,selected: val})
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.shopcar-container {
+  background-color: #eee;
+  overflow: hidden;
+}
+.goods-list img {
+  width: 60px;
+  height: 60px;
+}
+.goods-list h1 {
+  font-size: 13px;
+}
+.info .price {
+  color: red;
+  font-weight: bold;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.mui-card-content-inner {
+  display: flex;
+  align-items: cneter;
+}
+.jiesuan{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+.red{
+  color: red;
+  font-weight: bold;
+  font-size: 16px;
+}
 </style>

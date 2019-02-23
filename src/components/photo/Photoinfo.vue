@@ -6,9 +6,8 @@
             <span>点击:{{photoinfo.click}}次</span>
         </p>
         <hr>
-        <!-- 缩略图 -->
-       <img class="preview-img" v-for="(item, index) in list" :key="item.src" :src="item.src" height="100" @click="$preview.open(index, list)">   
-
+        <!-- 缩略图，目前vue-preview不是这种方法。 -->
+       <img class="preview-img" v-for="item in list" :key="item.src" :src="item.src" height="100">   
         <div class="content" v-html="photoinfo.content"></div>
         <cmt-box :id='id'></cmt-box>
     </div>

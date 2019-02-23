@@ -1,6 +1,6 @@
 <template>
   <div>
-    <swiper :lunbotuList="lunbotuList" :isfull="true"></swiper>
+    <swipe :lunbotuList="lunbotuList" :isfull="true"></swipe>
     <div class="mui-content">
       <ul class="mui-table-view mui-grid-view mui-grid-9">
         <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import swiper from '../subcomponent/swipe'
+import swipe from '../subcomponent/swipe'
 export default {
   name: "homeContainer",
   data() {
@@ -59,12 +59,12 @@ export default {
     this.getLunbotu();
   },
   components:{
-    swiper
+    swipe
   },
   methods: {
     getLunbotu() {
       this.$http.get("api/getlunbo").then(result => {
-        if (result.body.status == 0) {
+        if (result.body.status === 0) {
           this.lunbotuList = result.body.message;
         } else {
           Toast("失败");
