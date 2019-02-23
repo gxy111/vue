@@ -1,51 +1,62 @@
 <template>
-<div id="app-container">
-<mt-header fixed title="本地项目"></mt-header>
-<transition>
-<router-view></router-view>
-</transition>
+  <div id="app-container">
+    <mt-header fixed title="本地项目"></mt-header>
+    <transition>
+      <router-view></router-view>
+    </transition>
 
-<nav class="mui-bar mui-bar-tab">
-			<router-link class="mui-tab-item" to="/home">
-				<span class="mui-icon mui-icon-home"></span>
-				<span class="mui-tab-label">首页</span>
-			</router-link>
-			<router-link class="mui-tab-item" to="/mumber">
-				<span class="mui-icon mui-icon-contact"></span>
-				<span class="mui-tab-label">会员</span>
-			</router-link>
-			<router-link class="mui-tab-item" to="/shopcar">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">0</span></span>
-				<span class="mui-tab-label">购物车</span>
-			</router-link>
-			<router-link class="mui-tab-item" to="/search">
-				<span class="mui-icon mui-icon-search"></span>
-				<span class="mui-tab-label">搜索</span>
-			</router-link>
-		</nav>
-</div>
+    <nav class="mui-bar mui-bar-tab">
+      <router-link class="mui-tab-item" to="/home">
+        <span class="mui-icon mui-icon-home"></span>
+        <span class="mui-tab-label">首页</span>
+      </router-link>
+      <router-link class="mui-tab-item" to="/mumber">
+        <span class="mui-icon mui-icon-contact"></span>
+        <span class="mui-tab-label">会员</span>
+      </router-link>
+      <router-link class="mui-tab-item" to="/shopcar">
+        <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
+          <span class="mui-badge" id="badge">0</span>
+        </span>
+        <span class="mui-tab-label">购物车</span>
+      </router-link>
+      <router-link class="mui-tab-item" to="/search">
+        <span class="mui-icon mui-icon-search"></span>
+        <span class="mui-tab-label">搜索</span>
+      </router-link>
+    </nav>
+  </div>
 </template>
 <script>
+import mui from "./assets/mui/js/mui.min.js";
+
 export default {
-  name: 'App'
-}
+	name: "App",
+	data() {
+		return {
+			
+		}
+	}
+};
 </script>
 <style scoped>
-#app-container{
+#app-container {
   padding-top: 40px;
-	padding-bottom: 50px;
+  padding-bottom: 50px;
   overflow: hidden;
 }
-.v-enter,.v-leave-to{
+.v-enter,
+.v-leave-to {
   opacity: 0;
-  transform: translateX(100%)
+  transform: translateX(100%);
 }
-.v-leave-to{
+.v-leave-to {
   opacity: 0;
   transform: translateX(-100%);
   position: absolute;
 }
-.v-enter-active,.v-leave-active{
+.v-enter-active,
+.v-leave-active {
   transition: all 0.5s ease;
 }
 </style>

@@ -4,8 +4,14 @@ import homeContainer from '@/components/tabbar/homeContainer'
 import shopcarContainer from '@/components/tabbar/shopcarContainer'
 import searchContainer from '@/components/tabbar/searchContainer'
 import mumberContainer from '@/components/tabbar/mumberContainer'
-import NewList from '@/components/news/NewLsit.vue'
-import Newinfo from '@/components/news/Newinfo.vue'
+import NewList from '@/components/news/NewLsit'
+import Newinfo from '@/components/news/Newinfo'
+import PhotoList from '@/components/photo/PhotoList'
+import Photoinfo from '@/components/photo/Photoinfo'
+import GoodList from '@/components/goods/GoodList'
+import Goodsinfo from '@/components/goods/Goodsinfo'
+import Goodsdesc from '@/components/goods/Goodsdesc'
+import Goodscomment from '@/components/goods/Goodscomment'
 Vue.use(Router)
 
 export default new Router({
@@ -13,6 +19,36 @@ export default new Router({
     {
       path: '/',
       redirect: '/home'
+    },
+    {
+      path: '/home/photolist',
+      name: 'photolist',
+      component: PhotoList
+    },
+    {
+      path: '/home/goodsdesc/:id',
+      name: 'goodsdesc',
+      component: Goodsdesc
+    },
+    {
+      path: '/home/goodscomment/:id',
+      name: 'goodscomment',
+      component: Goodscomment
+    },
+    {
+      path: '/home/goodslist',
+      name: 'goodslist',
+      component: GoodList
+    },
+    {
+      path: '/home/goodsinfo/:id',
+      name: 'goodsinfo',
+      component: Goodsinfo
+    },
+    {
+      path: '/home/photoinfo/:id',
+      name: 'photoinfo',
+      component: Photoinfo
     },
     {
       path: '/home/newlist',

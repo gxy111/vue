@@ -10,9 +10,13 @@ import router from './router'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import moment from 'moment'
+// 安装图片预览插件
+import VuePreview from 'vue-preview'
 Vue.use(MintUI)
+Vue.use(VuePreview)
 Vue.use(VueResource)
 Vue.http.options.root = 'http://www.liulongbin.top:3005'
+Vue.http.options.emulateJSON = true
 
 Vue.config.productionTip = false
 Vue.filter('dataFormat', function (dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
